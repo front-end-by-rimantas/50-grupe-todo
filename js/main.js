@@ -95,8 +95,18 @@ function renderTaskList() {
 }
 
 function formatTime(timeInMs) {
-    // mdn: js Date -> getYear, getMonth, getDay, getHour...
-    return '2024-07-11 14:36:17';
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+    // minimum 100-ieji metai ???
+    // maximum ???
+    const date = new Date(timeInMs);
+    const y = date.getFullYear();
+    const m = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
+    const d = (date.getDate() < 10 ? '0' : '') + date.getDate();
+    const h = date.getHours();
+    const mn = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+    const s = (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
+
+    return `${y}-${m}-${d} ${h}:${mn}:${s}`;
 }
 
 // CRUD operations:
