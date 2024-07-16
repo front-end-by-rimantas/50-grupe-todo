@@ -16,7 +16,13 @@ toastCloseDOM.addEventListener('click', () => {
     toastDOM.classList.remove('active');
 });
 
-const todoData = [];
+const localData = localStorage.getItem('tasks');
+let todoData = [];
+
+if (localData !== null) {
+    todoData = JSON.parse(localData);
+    renderList();
+}
 
 submitButtonDOM.addEventListener('click', e => {
     e.preventDefault();
@@ -31,6 +37,7 @@ submitButtonDOM.addEventListener('click', e => {
         text: textInputDOM.value.trim(),
         createdAt: Date.now(),
     });
+    localStorage.setItem('tasks', JSON.stringify(todoData));
     renderList();
     showToastSuccess('Įrašas sėkmingas sukurtas.');
 });
