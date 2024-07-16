@@ -151,32 +151,27 @@ function isValidText(text) {
     return true;
 }
 
-function showToastSuccess(msg) {
+function showToast(state, title, msg) {
     toastDOM.classList.add('active');
-    toastDOM.dataset.state = 'success';
-    toastTitleDOM.textContent = 'Success';
+    toastDOM.dataset.state = state;
+    toastTitleDOM.textContent = title;
     toastMessageDOM.textContent = msg;
+}
+
+function showToastSuccess(msg) {
+    showToast('success', 'Pavyko', msg);
 }
 
 function showToastInfo(msg) {
-    toastDOM.classList.add('active');
-    toastDOM.dataset.state = 'info';
-    toastTitleDOM.textContent = 'Information';
-    toastMessageDOM.textContent = msg;
+    showToast('info', 'Informacija', msg);
 }
 
 function showToastWarning(msg) {
-    toastDOM.classList.add('active');
-    toastDOM.dataset.state = 'warning';
-    toastTitleDOM.textContent = 'Warning';
-    toastMessageDOM.textContent = msg;
+    showToast('warning', 'Įspėjimas', msg);
 }
 
 function showToastError(msg) {
-    toastDOM.classList.add('active');
-    toastDOM.dataset.state = 'error';
-    toastTitleDOM.textContent = 'Error';
-    toastMessageDOM.textContent = msg;
+    showToast('error', 'Klaida', msg);
 }
 
 // CRUD operations:
